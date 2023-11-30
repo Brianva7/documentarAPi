@@ -4,6 +4,7 @@ import {
   checkRoles,
   loadProduct,
   checkOwner,
+  apidocsTestAuth,
 } from "../middlewares/auth.middleware.js";
 import { Router } from "express";
 
@@ -15,6 +16,7 @@ router.get("/:pid", productsController.getProductById);
 
 router.post(
   "/",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
   checkRoles(["admin", "premium"]),
   productsController.createProduct
@@ -22,8 +24,9 @@ router.post(
 
 router.put(
   "/:pid",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
-  checkRoles(["premium"]),
+  checkRoles(["admin", "premium"]),
   loadProduct,
   checkOwner,
   productsController.updateProduct
@@ -31,8 +34,9 @@ router.put(
 
 router.delete(
   "/:pid",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
-  checkRoles(["premium"]),
+  checkRoles(["admin", "premium"]),
   loadProduct,
   checkOwner,
   productsController.deleteProduct

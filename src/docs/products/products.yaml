@@ -107,11 +107,10 @@ components:
           type: string
           description: Product owner
       example:
-        _id: ObjectId("60b1e1e9f0b7f9b7f0b7b0b0")
+        _id: ObjectId("6568c2c6a399c47c8628e289")
         name: Product name
-        description: Product description
         category: Product category
         price: 10
         stock: 10
         image: Product image
-        owner: owner@mail.owner
+        owner: test@test

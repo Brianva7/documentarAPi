@@ -2,6 +2,7 @@ import cartController from "../controllers/cart.controller.js";
 import {
   checkUserAuthenticatedView,
   checkRoles,
+  apidocsTestAuth,
 } from "../middlewares/auth.middleware.js";
 import { Router } from "express";
 
@@ -9,6 +10,7 @@ const router = Router();
 
 router.get(
   "/",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
   checkRoles(["admin"]),
   cartController.getCarts
@@ -18,8 +20,9 @@ router.post("/", cartController.createCart);
 
 router.get(
   "/:cid",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
-  checkRoles(["user"]),
+  checkRoles(["user", "premium", "admin"]),
   cartController.getCartById
 );
 
@@ -27,6 +30,7 @@ router.put("/:cid", cartController.emptyCart);
 
 router.delete(
   "/:cid",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
   checkRoles(["admin"]),
   cartController.deleteCart
@@ -34,6 +38,7 @@ router.delete(
 
 router.put(
   "/:cid/products/:pid",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
   checkRoles(["admin", "premium", "user"]),
   cartController.addProductToCart
@@ -41,6 +46,7 @@ router.put(
 
 router.delete(
   "/:cid/products/:pid",
+  apidocsTestAuth,
   checkUserAuthenticatedView,
   checkRoles(["admin", "premium", "user"]),
   cartController.deleteCartProduct

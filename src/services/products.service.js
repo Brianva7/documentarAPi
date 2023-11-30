@@ -16,9 +16,14 @@ async function deleteProduct(id) {
   return await productsDao.deleteProduct(id);
 }
 
+async function updateProduct(id, product) {
+  return await productsDao.updateProduct(id, product);
+}
+
 export default {
   getProducts,
   getProductById,
   createProduct,
   deleteProduct,
+  updateProduct,
 };

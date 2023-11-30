@@ -49,10 +49,27 @@ const checkOwner = (req, res, next) => {
   }
 };
 
+const apidocsTestAuth = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    req.user = {
+      first_name: "test",
+      last_name: "test",
+      age: 0,
+      email: "test@test",
+      role: "admin",
+      cart: [],
+    };
+    next();
+  }
+};
+
 export {
   checkUserAuthenticatedView,
   showAuthView,
   checkRoles,
   loadProduct,
   checkOwner,
+  apidocsTestAuth,
 };
